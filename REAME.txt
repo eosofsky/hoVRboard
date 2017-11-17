@@ -1,0 +1,21 @@
+HoVRboard
+
+Physics
+Have a board in a scene taking in input from tracker
+Got it to move forward and brake using forces
+BUT
+Forces does not seem to support turning
+May need to simulate physics ourselves :(
+
+Terrain
+Built with the terrain editor
+Still experimenting; terrain material, more trees, rocks, and other objects are to be modeled and applied.
+Making it as bumpy as possible so the player would have fun while flying above it.
+Created by the awesome Minsun & Rachel
+
+Models
+Edward’s fabulous rocks and trees
+
+Physical Model
+Got materials from Home Depot
+Have a board prototype
