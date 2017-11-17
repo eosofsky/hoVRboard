@@ -4,20 +4,34 @@ using UnityEngine;
 
 public class Tracker_Controls : MonoBehaviour {
 
+    const float dX = 0.0f;
+    const float dY = 0.0f;
+    const float dZ = 0.0f;
+
+    const float roll = 0.0f;
+    const float yaw = 90.0f;
+    const float pitch = 90.0f;
+
 	private Vector3 lastRotation;
-	[SerializeField] private GameObject hoverboard;
+    [SerializeField] private GameObject hoverboard;
 
 	public Vector3 rotationDelta { get; private set; }
 
 	private void Start() {
-		Align();
 		lastRotation = transform.eulerAngles;
 		rotationDelta = Vector3.zero;
-	}
+    }
 
 	private void Update() {
-		/* Save the change in rotation since the last frame */
-		Vector3 newRotation = transform.eulerAngles;
+        Vector3 delta_displacement = new Vector3(dX, dY, dZ);
+        Quaternion delta_rotation = Quaternion.Euler(roll, yaw, pitch);
+        Vector3 tracker_position = transform.position;
+        Quaternion tracker_rotation = transform.rotation;
+        hoverboard.transform.rotation = tracker_rotation * delta_rotation;
+        //hoverboard.transform.position = tracker_position + (tracker_rotation * delta_rotation) * delta_displacement;
+
+        /* Save the change in rotation since the last frame */
+        Vector3 newRotation = transform.eulerAngles;
 		Vector3 newrotationDelta = newRotation - lastRotation;
 		if (newrotationDelta.x > 180) {
 			newrotationDelta.x -= 360;
@@ -37,15 +51,7 @@ public class Tracker_Controls : MonoBehaviour {
 		if (newrotationDelta.z < -180) {
 			newrotationDelta.z += 360; 
 		}
-		rotationDelta = newrotationDelta;
+		rotationDelta = newrotationDelta / 180;
 		lastRotation = newRotation;
-	}
-
-	private void Align() {
-		/* Align tracker so that its forward position matches
-		 * that of the board */
-		hoverboard.transform.parent = null;
-		transform.forward = hoverboard.transform.up;
-		hoverboard.transform.parent = this.transform;
-	}
+    }
 }
