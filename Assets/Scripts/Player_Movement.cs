@@ -71,7 +71,7 @@ public class Player_Movement : MonoBehaviour {
             RightLeft(Vector3.one, Component.X);
         }
 
-        Vector3 rotationDelta = tracker.rotationDelta;
+        //Vector3 rotationDelta = tracker.rotationDelta;
         //RightLeft(hoverboard.transform.right, Component.Y);
         //UpDown(rotationDelta, Component.Y);
 

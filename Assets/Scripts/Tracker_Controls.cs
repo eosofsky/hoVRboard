@@ -12,17 +12,34 @@ public class Tracker_Controls : MonoBehaviour {
     const float yaw = 90.0f;
     const float pitch = 90.0f;
 
-	private Vector3 lastRotation;
-    [SerializeField] private GameObject hoverboard;
+	//private Vector3 lastRotation;
+    //private GameObject hoverboard;
 
-	public Vector3 rotationDelta { get; private set; }
+	//public Vector3 rotationDelta { get; private set; }
 
-	private void Start() {
-		lastRotation = transform.eulerAngles;
-		rotationDelta = Vector3.zero;
-    }
+	//private void Start() {
+		//lastRotation = transform.eulerAngles;
+		//rotationDelta = Vector3.zero;
+    //	}
 
-	private void Update() {
+	public Quaternion GetBoardRotation() {
+		if (!gameObject.active) {
+			return Quaternion.identity;
+		}
+		Quaternion delta_rotation = Quaternion.Euler(roll, yaw, pitch);
+		Quaternion tracker_rotation = transform.rotation;
+		return tracker_rotation * delta_rotation;
+	}
+
+	public Vector3 GetRight() {
+		return transform.right;
+	}
+
+	public Vector3 GetForward() {
+		return transform.forward;
+	}
+
+	/*private void Update() {
         Vector3 delta_displacement = new Vector3(dX, dY, dZ);
         Quaternion delta_rotation = Quaternion.Euler(roll, yaw, pitch);
         Vector3 tracker_position = transform.position;
@@ -31,7 +48,7 @@ public class Tracker_Controls : MonoBehaviour {
         //hoverboard.transform.position = tracker_position + (tracker_rotation * delta_rotation) * delta_displacement;
 
         /* Save the change in rotation since the last frame */
-        Vector3 newRotation = transform.eulerAngles;
+        /*Vector3 newRotation = transform.eulerAngles;
 		Vector3 newrotationDelta = newRotation - lastRotation;
 		if (newrotationDelta.x > 180) {
 			newrotationDelta.x -= 360;
@@ -53,5 +70,5 @@ public class Tracker_Controls : MonoBehaviour {
 		}
 		rotationDelta = newrotationDelta / 180;
 		lastRotation = newRotation;
-    }
+    }*/
 }
