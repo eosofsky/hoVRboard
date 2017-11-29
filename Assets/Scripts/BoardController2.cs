@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class BoardController2 : MonoBehaviour
 {
 	[SerializeField] Tracker_Controls tracker;
+    [SerializeField] GameObject board;
 	private Rigidbody rb;
 
 	public float TurnForce = 3f;
@@ -32,9 +33,11 @@ public class BoardController2 : MonoBehaviour
 
 	void Start () {
 		rb = GetComponent<Rigidbody> ();
-	}
+        transform.rotation = tracker.GetBoardRotation();
+    }
 
 	void Update () {
+
 	}
 
 	void FixedUpdate() {
@@ -59,9 +62,9 @@ public class BoardController2 : MonoBehaviour
 	}
 
 	private void TiltProcess() {
-		hTilt.x = Mathf.Lerp(hTilt.x, hMove.x * TurnTiltForce, Time.deltaTime);
-		hTilt.y = Mathf.Lerp(hTilt.y, hMove.y * ForwardTiltForce, Time.deltaTime);
-		rb.transform.localRotation = Quaternion.Euler(hTilt.y, rb.transform.localEulerAngles.y, -hTilt.x);
+        hTilt.x = Mathf.Lerp(hTilt.x, hMove.x * TurnTiltForce, Time.deltaTime);
+        hTilt.y = Mathf.Lerp(hTilt.y, hMove.y * ForwardTiltForce, Time.deltaTime);
+		board.transform.localRotation = Quaternion.Euler(hTilt.y, board.transform.localEulerAngles.y, -Mathf.Clamp(hTilt.x, 0.0f, 45.0f));
 	}
 
 	private void SimulatePhysics() {
@@ -85,21 +88,24 @@ public class BoardController2 : MonoBehaviour
 			/* Speed Up */
 			EngineForce += 0.1f;
 		}
-		if ((!useTracker && Input.GetKey (KeyCode.W)) || (useTracker && tracker.GetForward().y < 0.0f)) {
+		if ((!useTracker && Input.GetKey (KeyCode.W)) || (useTracker && tracker.GetForward().y < -6.0f)) {
+            Debug.Log("Forward: " + tracker.GetForward().y);
 			/* Go Forward */
 			if (!IsOnGround) {
-				tempY = Time.fixedDeltaTime;
+                tempY = Time.fixedDeltaTime;
 			}
 		}
-		if ((!useTracker && Input.GetKey(KeyCode.A)) || (useTracker && tracker.GetRight().y > 0.0f)) {
-			/* Left */
-			if (!IsOnGround) {
+		if ((!useTracker && Input.GetKey(KeyCode.A)) || (useTracker && tracker.GetRight().y > 0.1f)) {
+            Debug.Log("Left: " + tracker.GetRight().y);
+            /* Left */
+            if (!IsOnGround) {
 				tempX = -Time.fixedDeltaTime;
 			}
 		}
-		if ((!useTracker && Input.GetKey(KeyCode.D)) || (useTracker && tracker.GetRight().y < 0.0f)) {
-			/* Right */
-			if (!IsOnGround) {
+		if ((!useTracker && Input.GetKey(KeyCode.D)) || (useTracker && tracker.GetRight().y < -0.2f)) {
+            Debug.Log("Right: " + tracker.GetRight().y);
+            /* Right */
+            if (!IsOnGround) {
 				tempX = Time.fixedDeltaTime;
 			}
 		}

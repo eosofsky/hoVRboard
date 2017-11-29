@@ -12,17 +12,23 @@ public class Tracker_Controls : MonoBehaviour {
     const float yaw = 90.0f;
     const float pitch = 90.0f;
 
-	//private Vector3 lastRotation;
+    //private Vector3 lastRotation;
     //private GameObject hoverboard;
 
-	//public Vector3 rotationDelta { get; private set; }
+    //public Vector3 rotationDelta { get; private set; }
 
-	//private void Start() {
-		//lastRotation = transform.eulerAngles;
-		//rotationDelta = Vector3.zero;
+    //private void Start() {
+    //lastRotation = transform.eulerAngles;
+    //rotationDelta = Vector3.zero;
     //	}
 
-	public Quaternion GetBoardRotation() {
+    private void Update()
+    {
+        Debug.DrawLine(transform.position, transform.position + GetForward(), Color.red);
+
+    }
+
+    public Quaternion GetBoardRotation() {
 		if (!gameObject.active) {
 			return Quaternion.identity;
 		}
@@ -32,11 +38,11 @@ public class Tracker_Controls : MonoBehaviour {
 	}
 
 	public Vector3 GetRight() {
-		return transform.right;
+		return 1 * transform.right;
 	}
 
 	public Vector3 GetForward() {
-		return transform.forward;
+		return transform.up * -100;
 	}
 
 	/*private void Update() {
