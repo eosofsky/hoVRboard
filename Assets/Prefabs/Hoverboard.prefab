@@ -54,7 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4314348092357478}
   - component: {fileID: 54099587576083210}
-  - component: {fileID: 114961352782799348}
+  - component: {fileID: 114719974459964296}
   m_Layer: 0
   m_Name: Hoverboard
   m_TagString: Board
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 114245387747895410}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128,39 +128,6 @@ GameObject:
   - component: {fileID: 114853694499762704}
   m_Layer: 0
   m_Name: Camera (ears)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1655997421077852
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4197103382567988}
-  - component: {fileID: 114431014720937828}
-  - component: {fileID: 114725896861076986}
-  m_Layer: 0
-  m_Name: Controller (right)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1790999973549954
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4575609625849010}
-  - component: {fileID: 114308296955192032}
-  m_Layer: 0
-  m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -237,24 +204,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4247082110460878}
-  - {fileID: 4197103382567988}
   - {fileID: 4923267553298152}
   m_Father: {fileID: 4963808755440370}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4197103382567988
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1655997421077852}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4575609625849010}
-  m_Father: {fileID: 4196321612925864}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4247082110460878
 Transform:
@@ -277,7 +229,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1253372467982800}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 11.9, y: 0, z: 10.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4428949067625604}
@@ -296,19 +248,6 @@ Transform:
   m_LocalScale: {x: 0.4, y: 0.01, z: 1}
   m_Children: []
   m_Father: {fileID: 4314348092357478}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4575609625849010
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1790999973549954}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4197103382567988}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4854534708843810
@@ -337,7 +276,7 @@ Transform:
   - {fileID: 4128819562859216}
   - {fileID: 4079884085141756}
   m_Father: {fileID: 4196321612925864}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4963808755440370
 Transform:
@@ -513,8 +452,8 @@ Rigidbody:
   m_GameObject: {fileID: 1253372467982800}
   serializedVersion: 2
   m_Mass: 100
-  m_Drag: 5
-  m_AngularDrag: 20
+  m_Drag: 1
+  m_AngularDrag: 10
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -610,7 +549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 923a42d9b7fec4609bf2e61a09bd88a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tracker: {fileID: 114725896861076986}
+  tracker: {fileID: 0}
   hoverboard: {fileID: 1253372467982800}
 --- !u!114 &114227525231642056
 MonoBehaviour:
@@ -624,7 +563,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   left: {fileID: 1166303073136836}
-  right: {fileID: 1655997421077852}
+  right: {fileID: 0}
   objects:
   - {fileID: 0}
   assignAllBeforeIdentified: 0
@@ -634,7 +573,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1292744238046378}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da49d6251b60347658f713c9bbc5f91d, type: 3}
   m_Name: 
@@ -645,48 +584,28 @@ MonoBehaviour:
   Back: 115
   Left: 97
   Right: 100
---- !u!114 &114308296955192032
+--- !u!114 &114719974459964296
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1790999973549954}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5890e3cad70bea64d91aef9145ba3454, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  index: -1
-  modelOverride: 
-  shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  verbose: 0
-  createComponents: 1
-  updateDynamically: 1
---- !u!114 &114431014720937828
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1655997421077852}
+  m_GameObject: {fileID: 1253372467982800}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d37c2cf88f7c59f4c8cf5d3812568143, type: 3}
+  m_Script: {fileID: 11500000, guid: 02f16e73018504f4592125a9a5533192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: -1
-  origin: {fileID: 0}
---- !u!114 &114725896861076986
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1655997421077852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e046cf82d36fd4242b1e1e6b9854e4e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hoverboard: {fileID: 1253372467982800}
+  tracker: {fileID: 0}
+  board: {fileID: 1364699454844018}
+  TurnForce: 1
+  ForwardForce: 10
+  ForwardTiltForce: 20
+  TurnTiltForce: 30
+  EffectiveHeight: 100
+  turnTiltForcePercent: 1.5
+  turnForcePercent: 1.3
+  useTracker: 1
+  IsOnGround: 1
 --- !u!114 &114781666392708058
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -729,25 +648,6 @@ MonoBehaviour:
   verbose: 0
   createComponents: 1
   updateDynamically: 1
---- !u!114 &114961352782799348
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1253372467982800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55dac308ac77e4471bd129df219b0011, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TurnForce: 3
-  ForwardForce: 10
-  ForwardTiltForce: 20
-  TurnTiltForce: 30
-  EffectiveHeight: 100
-  turnTiltForcePercent: 1.5
-  turnForcePercent: 1.3
-  IsOnGround: 0
 --- !u!124 &124379673917586840
 Behaviour:
   m_ObjectHideFlags: 1
