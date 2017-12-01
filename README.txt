@@ -19,3 +19,6 @@ Edward’s fabulous rocks and trees
 Physical Model
 Got materials from Home Depot
 Have a board prototype
+
+Attributions:
+  Static video: https://giphy.com/gifs/snow-look-iF3M9gPPCdulq

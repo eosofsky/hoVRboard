@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class BoardController2 : MonoBehaviour
 {
@@ -30,14 +32,18 @@ public class BoardController2 : MonoBehaviour
 	private Vector2 hTilt = Vector2.zero;
 	private float hTurn = 0f;
 	public bool IsOnGround = true;
+	private float lastVelocity = 0.0f;
 
 	void Start () {
+		ViveController.OnTriggerDown += GoUp;
+		ViveController.OnTouchpadDown += GoDown;
 		rb = GetComponent<Rigidbody> ();
-        transform.rotation = tracker.GetBoardRotation();
+		if (useTracker) {
+			transform.rotation = tracker.GetBoardRotation ();
+		}
     }
 
 	void Update () {
-
 	}
 
 	void FixedUpdate() {
@@ -46,6 +52,7 @@ public class BoardController2 : MonoBehaviour
 		LiftProcess();
 		MoveProcess();
 		TiltProcess();
+		lastVelocity = rb.velocity.magnitude;
 	}
 
 	private void MoveProcess() {
@@ -65,6 +72,7 @@ public class BoardController2 : MonoBehaviour
         hTilt.x = Mathf.Lerp(hTilt.x, hMove.x * TurnTiltForce, Time.deltaTime);
         hTilt.y = Mathf.Lerp(hTilt.y, hMove.y * ForwardTiltForce, Time.deltaTime);
 		board.transform.localRotation = Quaternion.Euler(hTilt.y, board.transform.localEulerAngles.y, -Mathf.Clamp(hTilt.x, 0.0f, 45.0f));
+		rb.transform.localRotation = Quaternion.Euler(0.0f, rb.transform.localEulerAngles.y, 0.0f);
 	}
 
 	private void SimulatePhysics() {
@@ -83,11 +91,6 @@ public class BoardController2 : MonoBehaviour
 		else if (hMove.x < 0)
 				tempX = Time.fixedDeltaTime;
 
-
-		if (Input.GetKey (KeyCode.LeftShift)) {
-			/* Speed Up */
-			EngineForce += 0.1f;
-		}
 		if ((!useTracker && Input.GetKey (KeyCode.W)) || (useTracker && tracker.GetForward().y < -6.0f)) {
             Debug.Log("Forward: " + tracker.GetForward().y);
 			/* Go Forward */
@@ -118,13 +121,43 @@ public class BoardController2 : MonoBehaviour
 
 	}
 
-	private void OnCollisionEnter()
-	{
+	private void OnCollisionEnter() {
+		/* Landed */
+		rb.velocity = Vector3.zero;
 		IsOnGround = true;
+	}
+
+	private void OnTriggerEnter(Collider other) {
+		if (other.gameObject == gameObject) {
+			return;
+		}
+		if (lastVelocity > 1.0f) {
+			/* Crashed */
+			Destroy(board.GetComponent<Collider>());
+			//rb.constraints = RigidbodyConstraints.FreezeAll;
+			StaticMovie.PlayStatic ();
+			StartCoroutine (WaitAndRestart());
+		}
 	}
 
 	private void OnCollisionExit()
 	{
 		IsOnGround = false;
+	}
+
+	private void GoUp() {
+		EngineForce += 0.1f;
+	}
+
+	private void GoDown() {
+		EngineForce -= 0.12f;
+		if (EngineForce < 0) {
+			EngineForce = 0;
+		}
+	}
+
+	private IEnumerator WaitAndRestart() {
+		yield return new WaitForSeconds (2.0f);
+		SceneManager.LoadScene(0);
 	}
 }
