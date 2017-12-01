@@ -40,7 +40,7 @@ public class BoardController2 : MonoBehaviour
 		rb = GetComponent<Rigidbody> ();
 		if (useTracker) {
 			transform.rotation = tracker.GetBoardRotation ();
-            Vector3 newPosition = GameObject.Find("Camera (eye)").transform.position;
+            Vector3 newPosition = GameObject.Find("Camera").transform.position;
             newPosition.y = board.transform.position.y;
             board.transform.position = newPosition;
 		}

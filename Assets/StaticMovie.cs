@@ -4,10 +4,10 @@ using UnityEngine.Video;
 public class StaticMovie : MonoBehaviour {
 
 	[SerializeField] VideoClip staticClip;
+	[SerializeField] GameObject camera;
 	static VideoPlayer vp;
 
 	void Start () {
-		GameObject camera = GameObject.Find ("Camera (eye)");
 		vp = camera.AddComponent<VideoPlayer>();
 		vp.playOnAwake = false;
 		vp.renderMode = VideoRenderMode.CameraNearPlane;
