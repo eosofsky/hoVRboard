@@ -2,10 +2,7 @@ HoVRboard
 
 Physics
 Have a board in a scene taking in input from tracker
-Got it to move forward and brake using forces
-BUT
-Forces does not seem to support turning
-May need to simulate physics ourselves :(
+Got it to move forward and turn using forces
 
 Terrain
 Built with the terrain editor
@@ -22,3 +19,4 @@ Have a board prototype
 
 Attributions:
   Static video: https://giphy.com/gifs/snow-look-iF3M9gPPCdulq
+  Helicopter Controls: Base Helicopter Controller by SunCube 
