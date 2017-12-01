@@ -20,3 +20,4 @@ Have a board prototype
 Attributions:
   Static video: https://giphy.com/gifs/snow-look-iF3M9gPPCdulq
   Helicopter Controls: Base Helicopter Controller by SunCube 
+  Unity Standard Assets
