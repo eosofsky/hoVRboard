@@ -54,7 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4314348092357478}
   - component: {fileID: 54099587576083210}
-  - component: {fileID: 114719974459964296}
+  - component: {fileID: 114657601077452650}
   m_Layer: 0
   m_Name: Hoverboard
   m_TagString: Board
@@ -584,7 +584,7 @@ MonoBehaviour:
   Back: 115
   Left: 97
   Right: 100
---- !u!114 &114719974459964296
+--- !u!114 &114657601077452650
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
