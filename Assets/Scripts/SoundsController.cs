@@ -11,7 +11,9 @@ public class SoundsController : MonoBehaviour {
 	private Dictionary<string, AudioClip> sounds;
 
 	public GameObject player;
-	private float startHeight;
+	public float startHeight;
+	public float doubleHeight = 50;
+	private float doubleDist;
 	private float pitch;
 
 	// Use this for initialization
@@ -24,13 +26,14 @@ public class SoundsController : MonoBehaviour {
 
 		board = GetComponents<AudioSource> () [1];
 		board.loop = true;
+		board.volume = 0.075f;
 
 		sfx = GetComponents<AudioSource> () [2];
 
 
 		var snowballFight = Resources.Load ("Dee_Yan-Key_-_18_-_snowball_fight", typeof(AudioClip)) as AudioClip;
 
-		var hoverHum = Resources.Load ("hoverhum", typeof(AudioClip)) as AudioClip;
+		var hoverHum = Resources.Load ("noisyhum", typeof(AudioClip)) as AudioClip;
 
 
 		sounds.Add ("snowball-fight", snowballFight);
@@ -52,6 +55,12 @@ public class SoundsController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		ChangePitch ();
+	}
+
+	void ChangePitch () {
+		float temp = (player.transform.position.y - startHeight) / (doubleDist);
+		pitch = Mathf.Min (temp + 1, 3);
+		board.pitch = pitch;
 	}
 }
