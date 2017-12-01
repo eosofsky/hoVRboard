@@ -48,7 +48,7 @@ public class SoundsController : MonoBehaviour {
 	}
 
 	void Start() {
-		player = GameObject.FindGameObjectWithTag ("player");
+		player = GameObject.FindGameObjectWithTag ("Player");
 		startHeight = player.transform.position.y;
 	}
 
