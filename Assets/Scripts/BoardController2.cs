@@ -40,6 +40,9 @@ public class BoardController2 : MonoBehaviour
 		rb = GetComponent<Rigidbody> ();
 		if (useTracker) {
 			transform.rotation = tracker.GetBoardRotation ();
+            Vector3 newPosition = GameObject.Find("Camera (eye)").transform.position;
+            newPosition.y = board.transform.position.y;
+            board.transform.position = newPosition;
 		}
     }
 
@@ -98,14 +101,14 @@ public class BoardController2 : MonoBehaviour
                 tempY = Time.fixedDeltaTime;
 			}
 		}
-		if ((!useTracker && Input.GetKey(KeyCode.A)) || (useTracker && tracker.GetRight().y > 0.1f)) {
+		if ((!useTracker && Input.GetKey(KeyCode.A)) || (useTracker && tracker.GetRight().y > 0.05f)) {
             Debug.Log("Left: " + tracker.GetRight().y);
             /* Left */
             if (!IsOnGround) {
 				tempX = -Time.fixedDeltaTime;
 			}
 		}
-		if ((!useTracker && Input.GetKey(KeyCode.D)) || (useTracker && tracker.GetRight().y < -0.2f)) {
+		if ((!useTracker && Input.GetKey(KeyCode.D)) || (useTracker && tracker.GetRight().y < -0.1f)) {
             Debug.Log("Right: " + tracker.GetRight().y);
             /* Right */
             if (!IsOnGround) {
