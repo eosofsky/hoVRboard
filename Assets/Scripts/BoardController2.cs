@@ -40,7 +40,7 @@ public class BoardController2 : MonoBehaviour
 		rb = GetComponent<Rigidbody> ();
 		if (useTracker) {
 			transform.rotation = tracker.GetBoardRotation ();
-            Vector3 newPosition = GameObject.Find("Camera (eye)").transform.position;
+            Vector3 newPosition = GameObject.Find("Camera").transform.position;
             newPosition.y = board.transform.position.y;
             board.transform.position = newPosition;
 		}
@@ -94,22 +94,22 @@ public class BoardController2 : MonoBehaviour
 		else if (hMove.x < 0)
 				tempX = Time.fixedDeltaTime;
 
-		if ((!useTracker && Input.GetKey (KeyCode.W)) || (useTracker && tracker.GetForward().y < -6.0f)) {
-            Debug.Log("Forward: " + tracker.GetForward().y);
+        if ((!useTracker && Input.GetKey (KeyCode.W)) || (useTracker && tracker.GetForward().y < -6.0f)) {
+            //Debug.Log("Forward: " + tracker.GetForward().y);
 			/* Go Forward */
 			if (!IsOnGround) {
                 tempY = Time.fixedDeltaTime;
 			}
 		}
 		if ((!useTracker && Input.GetKey(KeyCode.A)) || (useTracker && tracker.GetRight().y > 0.05f)) {
-            Debug.Log("Left: " + tracker.GetRight().y);
+            //Debug.Log("Left: " + tracker.GetRight().y);
             /* Left */
             if (!IsOnGround) {
 				tempX = -Time.fixedDeltaTime;
 			}
 		}
 		if ((!useTracker && Input.GetKey(KeyCode.D)) || (useTracker && tracker.GetRight().y < -0.1f)) {
-            Debug.Log("Right: " + tracker.GetRight().y);
+            //Debug.Log("Right: " + tracker.GetRight().y);
             /* Right */
             if (!IsOnGround) {
 				tempX = Time.fixedDeltaTime;

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using HTC.UnityPlugin.Vive;
 
 public class ViveController : MonoBehaviour {
 
@@ -23,8 +24,9 @@ public class ViveController : MonoBehaviour {
 			// Finger on touchpad
 		}
 
-		if ((Controller != null && Controller.GetHairTriggerDown ()) || Input.GetKey(KeyCode.LeftShift)) {
-			// Trigger pressed down
+        //if ((Controller != null && Controller.GetHairTriggerDown ()) || Input.GetKey(KeyCode.LeftShift)) {
+        if ((ViveInput.GetPress(HandRole.RightHand, ControllerButton.Trigger)) || Input.GetKey(KeyCode.LeftShift)) {
+            // Trigger pressed down
 			if(OnTriggerDown != null) {
 				OnTriggerDown();
 			}
@@ -42,9 +44,10 @@ public class ViveController : MonoBehaviour {
 			// Grip button released
 		}
 
-		if ((Controller != null && Controller.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad)) || Input.GetKey(KeyCode.C)) {
+		//if ((Controller != null && Controller.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad)) || Input.GetKey(KeyCode.C)) {
+        if ((ViveInput.GetPress(HandRole.RightHand, ControllerButton.Pad)) || Input.GetKey(KeyCode.C)) {
             // Touchpad button pressed
-			if (OnTouchpadDown != null) {
+            if (OnTouchpadDown != null) {
 				OnTouchpadDown ();
 			}
         }
