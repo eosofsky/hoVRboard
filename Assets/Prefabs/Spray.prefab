@@ -72,7 +72,7 @@ MonoBehaviour:
   - {fileID: 4300004, guid: 7977aa2e23a3b4949b0dec50b282bc9b, type: 3}
   _scale: 0.1
   _scaleRandomness: 0.024
-  _material: {fileID: 2100000, guid: e1aad33bf16194534a7c99e7c01a8249, type: 2}
+  _material: {fileID: 0}
   _castShadows: 1
   _receiveShadows: 1
   _randomSeed: 0
