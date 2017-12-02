@@ -10,6 +10,7 @@ public class CreateSpray : MonoBehaviour {
 
     private GameObject player;
     private List<GameObject> sprayList;
+    private List<GameObject> sprayStorage;
     private float sprayLen;
 
 	// Use this for initialization
@@ -29,16 +30,23 @@ public class CreateSpray : MonoBehaviour {
         sprayList = new List<GameObject>();
         print("spraylist created");
         Vector3 center = new Vector3(FloorToTen(player.transform.position.x), FloorToTen(player.transform.position.y), FloorToTen(player.transform.position.z));
-        for (int i = -2; i < 3; i++)
+        for (int i = -1; i < 2; i++)
         {
-            for (int j = -2; j < 3; j++)
+            for (int j = -1; j < 2; j++)
             {
-                for(int k = -2; k < 3; k++)
+                for(int k = -1; k < 2; k++)
                 {
                     Vector3 spraypos = center + new Vector3(i * sprayLen, j * sprayLen, k * sprayLen);
                     sprayList.Add(Instantiate(spray, spraypos, new Quaternion(), sprayContainer.transform));
                 }
             }
+        }
+
+        for (int l = 0; l < 10; l++)
+        {
+            GameObject extraSpray = Instantiate(spray, sprayContainer.transform);
+            extraSpray.SetActive(false);
+            sprayStorage.Add(extraSpray);
         }
     }
 
@@ -53,8 +61,9 @@ public class CreateSpray : MonoBehaviour {
             Vector3 diff = center - tmpSpray.transform.position;
             if(Mathf.Abs(diff.x) > 10 || Mathf.Abs(diff.y) > 10 || Mathf.Abs(diff.z) > 10)
             {
-                Destroy(tmpSpray);
                 sprayList.RemoveAt(i);
+                sprayStorage.Add(tmpSpray);
+                tmpSpray.SetActive(false);
             }
         }
 
@@ -68,7 +77,10 @@ public class CreateSpray : MonoBehaviour {
                     Vector3 spraypos = center + new Vector3(i * sprayLen, j * sprayLen, k * sprayLen);
                     if (!FindSpray(spraypos))
                     {
-                        sprayList.Add(Instantiate(spray, spraypos, new Quaternion(), sprayContainer.transform));
+                        GameObject tmpSpray = sprayStorage[0];
+                        tmpSpray.transform.position = spraypos;
+                        sprayList.Add(tmpSpray);
+                        sprayStorage.RemoveAt(0);
                     }
                 }
             }
